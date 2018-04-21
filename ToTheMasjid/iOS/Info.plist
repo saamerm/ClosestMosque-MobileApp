@@ -44,5 +44,11 @@
 	<string>com.tfp.tothemasjid</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app tracks your position to search nearby mosques.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Need location for geolocator plugin.</string>
+	<key>RequestWhenInUseAuthorization</key>
+	<string>Need location for geolocator plugin.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app tracks your position to search nearby mosques.</string>
 </dict>
 </plist>

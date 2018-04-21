@@ -1,0 +1,62 @@
+{ 
+   "type":"success",
+   "value":[ 
+      { 
+         "id":1,
+         "name":"Masjid Nur",
+         "category":"mosque",
+         "Latitude":12,
+         "Longitude":12,
+         "FajrTime":"2012-04-23T18:25:43.511Z",
+         "DhuhrTime":"2012-04-23T18:25:43.511Z",
+         "AsrTime":"2012-04-23T18:25:43.511Z",
+         "MaghrebTime":"2012-04-23T18:25:43.511Z",
+         "IshaTime":"2012-04-23T18:25:43.511Z",
+         "Jummah1Time":"2012-04-23T18:25:43.511Z",
+         "Jummah2Time":"2012-04-23T18:25:43.511Z",
+         "PhoneNumber":"(214)-683-9508",
+         "Email":"i@saamer.me",
+         "Address":"8824 E Florida Ave Denver CO-80247",
+         "Facebook":"www.facebook.com",
+         "Website":"www.thefirstprototype.com"
+      },
+      { 
+         "id":2,
+         "name":"Masjid Nur",
+         "category":"mosque",
+         "Latitude":12,
+         "Longitude":12,
+         "FajrTime":"2012-04-23T18:25:43.511Z",
+         "DhuhrTime":"2012-04-23T18:25:43.511Z",
+         "AsrTime":"2012-04-23T18:25:43.511Z",
+         "MaghrebTime":"2012-04-23T18:25:43.511Z",
+         "IshaTime":"2012-04-23T18:25:43.511Z",
+         "Jummah1Time":"2012-04-23T18:25:43.511Z",
+         "Jummah2Time":"2012-04-23T18:25:43.511Z",
+         "PhoneNumber":"(214)-683-9508",
+         "Email":"i@saamer.me",
+         "Address":"8824 E Florida Ave Denver CO-80247",
+         "Facebook":"www.facebook.com",
+         "Website":"www.thefirstprototype.com"
+      },
+      { 
+         "id":3,
+         "name":"Masjid Nur",
+         "category":"mosque",
+         "Latitude":12,
+         "Longitude":12,
+         "FajrTime":"2012-04-23T18:25:43.511Z",
+         "DhuhrTime":"2012-04-23T18:25:43.511Z",
+         "AsrTime":"2012-04-23T18:25:43.511Z",
+         "MaghrebTime":"2012-04-23T18:25:43.511Z",
+         "IshaTime":"2012-04-23T18:25:43.511Z",
+         "Jummah1Time":"2012-04-23T18:25:43.511Z",
+         "Jummah2Time":"2012-04-23T18:25:43.511Z",
+         "PhoneNumber":"(214)-683-9508",
+         "Email":"i@saamer.me",
+         "Address":"8824 E Florida Ave Denver CO-80247",
+         "Facebook":"www.facebook.com",
+         "Website":"www.thefirstprototype.com"
+      }
+   ]
+}

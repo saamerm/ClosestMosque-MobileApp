@@ -183,7 +183,10 @@ namespace ToTheMasjid
 			try
 			{
 				if (savedPosition == null)
+				{
+					LabelAddress.Text = "No Saved Location";
 					return;
+				}
 
 				var hasPermission = await Utils.CheckPermissions(Permission.Location);
 				if (!hasPermission)
@@ -193,7 +196,7 @@ namespace ToTheMasjid
 
 				var locator = CrossGeolocator.Current;
 
-				var address = await locator.GetAddressesForPositionAsync(savedPosition, "RJHqIE53Onrqons5CNOx~FrDr3XhjDTyEXEjng-CRoA~Aj69MhNManYUKxo6QcwZ0wmXBtyva0zwuHB04rFYAPf7qqGJ5cHb03RCDw1jIW8l");
+				var address = await locator.GetAddressesForPositionAsync(savedPosition);//, "RJHqIE53Onrqons5CNOx~FrDr3XhjDTyEXEjng-CRoA~Aj69MhNManYUKxo6QcwZ0wmXBtyva0zwuHB04rFYAPf7qqGJ5cHb03RCDw1jIW8l");
 				if (address == null || address.Count() == 0)
 				{
 					LabelAddress.Text = "Unable to find address";

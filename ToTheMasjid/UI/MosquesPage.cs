@@ -1,9 +1,17 @@
-﻿using Xamarin.Forms;
-
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
+using Newtonsoft.Json;
+using Xamarin.Forms; 
 namespace ToTheMasjid
 {
 	public class MosquesPage : ContentPage
 	{
+		//ObservableCollection<object> mosqueDisplay. = new ObservableCollection<object>();
+		Mosques mosqueDisplay = new Mosques();
+		ListView listViewJson = new ListView();
+
 		public MosquesPage()
 		{
 			Title = "Mosques Page";
@@ -18,36 +26,104 @@ namespace ToTheMasjid
 
 			//BackgroundColor = Colors.AlmostSilver;//Colors.Base1;
 
-			var layout1 = new StackLayout()
-			{
-				BackgroundColor = Color.White,
-				Opacity = 0.75,
-				Padding = new Thickness(10, 40, 10, 40),
-				VerticalOptions = LayoutOptions.FillAndExpand
-			};
+			GetJSON();
 
-			var label1 = new Label()
-			{
-				FontSize = 22
-			};
-			var s1 = new FormattedString();
-			s1.Spans.Add(new Span { Text = "ToTheMasjid", FontAttributes = FontAttributes.Bold, FontSize = 24 });
-			s1.Spans.Add(new Span { Text = " " });
-			s1.Spans.Add(new Span { Text = "1.0", ForegroundColor = Color.Gray });
+			ViewModel = new PullToRefresh();
 
-			label1.FormattedText = s1;
-			layout1.Children.Add(label1);
-			var label2 = new Label()
+			this.BindingContext = ViewModel;
+
+			listViewJson = new ListView
 			{
-				Text = "Mosques Page"
+
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+				IsPullToRefreshEnabled = true,
+				RefreshCommand = LoadTestCommand,
+
 			};
-			layout1.Children.Add(label2);
-			var mainLayout = new StackLayout();
-			mainLayout.Children.Add(layout1);
-			Content = new ScrollView
+			listViewJson.SetBinding(ListView.IsRefreshingProperty, "IsBusy", BindingMode.OneWay);
+		}
+
+		public async void GetJSON()
+		{
+			try
 			{
-				Content = mainLayout
-			};
+				var client = new System.Net.Http.HttpClient();
+				var response = await client.GetAsync("https://raw.githubusercontent.com/saamerm/ClosestMosque-MobileApp/master/NoSQLStorage/MosquesList.json");
+				string json = await response.Content.ReadAsStringAsync();
+				listViewJson.HasUnevenRows = true;
+				listViewJson.ItemSelected += listViewJson_ItemSelected;
+
+				if (json != "")
+				{
+					mosqueDisplay = JsonConvert.DeserializeObject<Mosques>(json);
+				}
+				DataTemplate template = new DataTemplate(typeof(CustomCell));
+				listViewJson.ItemTemplate = template;
+				listViewJson.IsPullToRefreshEnabled = true;
+
+				listViewJson.ItemsSource = mosqueDisplay.value;
+
+				//listViewJson.ItemAppearing += (object sender, ItemVisibilityEventArgs e) => {
+
+				//	var viewCellDetails = e.Item as object;
+				//	int viewCellIndex = mosqueCollection.IndexOf(viewCellDetails);
+
+				//	if (mosqueCollection.Count > 10)
+				//	{
+				//		if (viewCellIndex == mosqueCollection.Count - 1)
+				//		{
+				//			var page = (mosqueCollection.Count / 10);
+				//			//skip already shown, add new ones
+				//			for (int i = page * 10; i < (page * 10) + 10; i++)
+				//			{
+				//				mosqueCollection.Add(mosqueDisplay.value.ElementAt(i));
+				//			}
+				//		}
+				//	}
+				//};
+				listViewJson.IsPullToRefreshEnabled = true;
+				Content = listViewJson;
+			}
+
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		private void listViewJson_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+		{
+			var item = e.SelectedItem as Mosque;
+			Navigation.PushAsync(new MosquesDetailPage(item));
+		}
+
+		private PullToRefresh ViewModel { get; set; }
+
+		private Command loadTestCommand;
+
+		public Command LoadTestCommand
+		{
+			get
+			{
+				return loadTestCommand ?? (loadTestCommand = new Command(ExecuteLoadTestCommand, () => {
+					return !ViewModel.IsBusy;
+				}));
+			}
+
+		}
+
+		private async void ExecuteLoadTestCommand()
+		{
+			if (ViewModel.IsBusy) 
+				return;
+			ViewModel.IsBusy = true;
+			LoadTestCommand.ChangeCanExecute();
+			//DoStuff 
+			listViewJson.ItemsSource = mosqueDisplay.value;
+			ViewModel.IsBusy = false;
+			LoadTestCommand.ChangeCanExecute();
+			listViewJson.EndRefresh();
 		}
 	}
-}
+} 

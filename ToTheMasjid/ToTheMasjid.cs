@@ -1,13 +1,16 @@
 ﻿using System;
-
 using Xamarin.Forms;
-
+using XLabs.Platform.Device;
+using XLabs.Platform;
+using XLabs.Ioc;
+using XLabs.Platform.Services.Geolocation;
 namespace ToTheMasjid
 {
 	public class App : Application
 	{
 		public App()
 		{
+			var oGeolocator = Resolver.Resolve<IGeolocator>(); // Resolve the Geolocator over the resolver
 			GoToMainPage();
 		}
 

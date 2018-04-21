@@ -7,6 +7,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+// New Xlabs
+using XLabs.Ioc; // Using for SimpleContainer
+using XLabs.Platform.Services.Geolocation; // Using for Geolocation 
+using XLabs.Platform.Device; // Using for Display
+// End new Xlabs
 
 namespace ToTheMasjid.Droid
 {
@@ -19,6 +24,13 @@ namespace ToTheMasjid.Droid
 			ToolbarResource = Resource.Layout.Toolbar;
 
 			base.OnCreate(bundle);
+
+			// New Xlabs
+			var container = new SimpleContainer();
+			container.Register<IDevice>(t => AndroidDevice.CurrentDevice); 
+			container.Register<IGeolocator, Geolocator>(); 
+			Resolver.SetResolver(container.GetResolver()); // Resolving the services																			     
+			// End new Xlabs
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 

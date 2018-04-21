@@ -1,9 +1,17 @@
 ﻿using Xamarin.Forms;
+using XLabs.Platform.Device;
+using XLabs.Platform;
+using XLabs.Ioc;
+using XLabs.Platform.Services.Geolocation;
+using System.Threading.Tasks;
+using System;
 
 namespace ToTheMasjid
 {
 	public class NotificationsPage : ContentPage
 	{
+		StackLayout mainLayout = new StackLayout();
+
 		public NotificationsPage()
 		{
 			Title = "Notifications Page";
@@ -42,12 +50,36 @@ namespace ToTheMasjid
 				Text = "Notifications Page"
 			};
 			layout1.Children.Add(label2);
-			var mainLayout = new StackLayout();
+
+			//var oGeolocator = Resolver.Resolve<IGeolocator>(); // Resolve the Geolocator over the resolver
+			var button = new Button()
+			{
+				Text = "Click"
+			};
+			button.Clicked += Button_Clicked;
 			mainLayout.Children.Add(layout1);
 			Content = new ScrollView
 			{
 				Content = mainLayout
 			};
+		}
+
+		private void Button_Clicked(object sender, EventArgs e)
+		{
+			var x = GetPosition(20);
+			var coordinates = new Label()
+			{
+				Text = x.Result.Latitude.ToString() + "Latitude"
+			};
+			mainLayout.Children.Add(coordinates);
+		}
+
+		public async Task<Position> GetPosition(int x)
+		{
+			var oGeolocator = Resolver.Resolve<IGeolocator>(); // Resolve the Geolocator over the resolver
+			var y = await oGeolocator.GetPositionAsync(x);
+
+			return y;
 		}
 	}
 }

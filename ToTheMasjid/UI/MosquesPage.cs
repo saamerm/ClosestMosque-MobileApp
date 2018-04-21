@@ -14,7 +14,7 @@ namespace ToTheMasjid
 
 		public MosquesPage()
 		{
-			Title = "Mosques Page";
+			Title = "Mosques";
 
 			// Use this to Add a get current location Target or GPS arrow button 
 			//var toolbarItem = new ToolbarItem
@@ -64,6 +64,7 @@ namespace ToTheMasjid
 
 				listViewJson.ItemsSource = mosqueDisplay.value;
 
+				// Show only Closest 10
 				//listViewJson.ItemAppearing += (object sender, ItemVisibilityEventArgs e) => {
 
 				//	var viewCellDetails = e.Item as object;

@@ -11,15 +11,15 @@ namespace ToTheMasjid
 			BackgroundColor = Color.FromRgb(121, 191, 48);
 			BarBackgroundColor = Color.FromRgb(98, 182, 15);
 			BarTextColor = Color.White;
-			var embeddedImage = new Image { Aspect = Aspect.AspectFit };
-			embeddedImage.Source = ImageSource.FromResource("Resources.Images.rukuposture.png");
+			//var embeddedImage = new Image { Aspect = Aspect.AspectFit };
+			//embeddedImage.Source = ImageSource.FromResource("Resources.Images.rukuposture.png");
 			Children.Add(new NavigationPage(new MosquesPage())
 			{
 				BackgroundColor = Color.White,
 				BarBackgroundColor = Color.FromRgb(121, 191, 48),
 				BarTextColor = Color.White,
 				Title = "Mosques",
-				//Icon = "ruku-posture.png" 
+				Icon = "Pray32.png" 
 				//TODO: Change Icons 
 			});
 			Children.Add(new NavigationPage(new NotificationsPage())
@@ -29,7 +29,7 @@ namespace ToTheMasjid
 				//BarBackgroundColor = Color.FromRgb(137, 188, 75), equivalent
 				BarTextColor = Color.White,
 				Title = "Notifications",
-				//Icon = "ruku-posture.png" 
+				Icon = "Pray32.png" 
 				//TODO: Change Icons 
 			});
 			Children.Add(new NavigationPage(new AboutPage())
@@ -38,7 +38,7 @@ namespace ToTheMasjid
 				BarBackgroundColor = Color.FromRgb(121, 191, 48),
 				BarTextColor = Color.White,
 				Title = "About",
-				//Icon = "ruku-posture.png" 
+				Icon = "Pray32.png" 
 				//TODO: Change Icons 
 			});
 		}

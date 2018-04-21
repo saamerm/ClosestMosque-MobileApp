@@ -57,6 +57,8 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="CustomRenderers\Colors.cs" />
+    <None Include="Resources\Images\Pray32.png" />
+    <None Include="Resources\Images\Pray64.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UI\" />

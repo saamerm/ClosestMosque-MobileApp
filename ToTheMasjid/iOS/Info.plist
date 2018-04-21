@@ -42,5 +42,7 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.tfp.tothemasjid</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app tracks your position to search nearby mosques.</string>
 </dict>
 </plist>

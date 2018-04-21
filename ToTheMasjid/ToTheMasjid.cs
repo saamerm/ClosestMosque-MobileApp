@@ -8,23 +8,12 @@ namespace ToTheMasjid
 	{
 		public App()
 		{
-			// The root page of your application
-			var content = new ContentPage
-			{
-				Title = "ToTheMasjid",
-				Content = new StackLayout
-				{
-					VerticalOptions = LayoutOptions.Center,
-					Children = {
-						new Label {
-							HorizontalTextAlignment = TextAlignment.Center,
-							Text = "Welcome to Xamarin Forms!"
-						}
-					}
-				}
-			};
+			GoToMainPage();
+		}
 
-			MainPage = new NavigationPage(content);
+		private static void GoToMainPage()
+		{
+			Current.MainPage = new MasjidTabbedPage();
 		}
 
 		protected override void OnStart()

@@ -78,7 +78,7 @@ namespace ToTheMasjid
 		Label LabelCount = new Label() { };
 		Stepper DesiredAccuracy = new Stepper() { };
 		Switch TrackIncludeHeading = new Switch() { };
-		Stepper Timeout = new Stepper() { Value = 20 };
+		Stepper Timeout = new Stepper() { Value = 2 };
 		Switch IncludeHeading = new Switch() { };
 		public NotificationsPage()
 		{
